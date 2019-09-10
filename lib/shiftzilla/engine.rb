@@ -55,7 +55,11 @@ module Shiftzilla
           backup_db
           puts "Querying bugzilla for #{s.id}"
           added_count = s.load_records(options)
-          puts "Added #{added_count} records to #{s.table}"
+          if added_count > 0
+            puts "Added #{added_count} records to #{s.table}"
+          else
+            puts "No rows found. Please check that you are logged into bugzilla and that the query is correct"
+            exit 1
         end
       end
     end
